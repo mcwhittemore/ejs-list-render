@@ -1,0 +1,34 @@
+{
+  "name": "ejs-list-render",
+  "devDependencies": {
+    "node-hooks": "0.0.15",
+    "esprima.hks": "0.0.0",
+    "beautify.hks": "0.0.3",
+    "should": "~2.0.2"
+  },
+  "version": "0.0.0",
+  "description": "Render a list of nested ejs templates",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "~0.8.4"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "connect",
+    "ejs",
+    "express",
+    "render",
+    "open-api"
+  ],
+  "author": "Matthew Chase Whittemore <mcwhittemore@gmail.com>",
+  "license": "BSD-2-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mcwhittemore/ejs-list-render.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mcwhittemore/ejs-list-render/issues"
+  }
+}
