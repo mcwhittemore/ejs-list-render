@@ -7,28 +7,28 @@ var fooFile = path.join(__dirname, "./foo.ejs");
 var barFile = path.join(__dirname, "./bar.ejs");
 
 it("One File", function(done) {
-    render(barFile, {
-        bang: "!"
-    }, function(err, html) {
-        html.should.equal("bar!");
-        done(err);
-    });
+        render(barFile, {
+                bang: "!"
+        }, function(err, html) {
+                html.should.equal("bar!");
+                done(err);
+        });
 });
 
 it("Two Files", function(done) {
-    render([fooFile, barFile], {
-        bang: "!"
-    }, function(err, html) {
-        html.should.equal("foo bar!");
-        done(err);
-    });
+        render([fooFile, barFile], {
+                bang: "!"
+        }, function(err, html) {
+                html.should.equal("foo bar!");
+                done(err);
+        });
 });
 
 it("Three Files", function(done) {
-    render([layoutFile, fooFile, barFile], {
-        bang: "!"
-    }, function(err, html) {
-        html.should.equal("<div>foo bar!</div>");
-        done(err);
-    });
+        render([layoutFile, fooFile, barFile], {
+                bang: "!"
+        }, function(err, html) {
+                html.should.equal("<div>foo bar!</div>");
+                done(err);
+        });
 });
