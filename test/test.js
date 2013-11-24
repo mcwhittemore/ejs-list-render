@@ -1,5 +1,5 @@
 var should = require("should");
-var render = require("../");
+var elr = require("../");
 var path = require("path");
 
 var layoutFile = path.join(__dirname, "./layout.ejs");
@@ -7,7 +7,7 @@ var fooFile = path.join(__dirname, "./foo.ejs");
 var barFile = path.join(__dirname, "./bar.ejs");
 
 it("One File", function(done) {
-    render(barFile, {
+    elr(barFile, {
         bang: "!"
     }, function(err, html) {
         html.should.equal("bar!");
@@ -16,7 +16,7 @@ it("One File", function(done) {
 });
 
 it("Two Files", function(done) {
-    render([fooFile, barFile], {
+    elr([fooFile, barFile], {
         bang: "!"
     }, function(err, html) {
         html.should.equal("foo bar!");
@@ -25,7 +25,7 @@ it("Two Files", function(done) {
 });
 
 it("Three Files", function(done) {
-    render([layoutFile, fooFile, barFile], {
+    elr([layoutFile, fooFile, barFile], {
         bang: "!"
     }, function(err, html) {
         html.should.equal("<div>foo bar!</div>");
