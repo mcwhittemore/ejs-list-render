@@ -32,18 +32,44 @@ module.exports = function(files, data, cb) {
     });
 }
 
+var responder = function(cb, res) {
+    return function(err, html) {
+        if (cb) {
+            cb(err, html);
+        } else if (err) {
+            res.statusCode = 500;
+            res.end(err);
+        } else {
+            res.end(html);
+        }
+    }
+}
+
 module.exports.connect = function(req, res, next) {
     res.render = function(files, data, cb) {
-        module.exports(files, data, function(err, html) {
-            if (cb) {
-                cb(err, html);
-            } else if (err) {
-                res.statusCode = 500;
-                res.end(err);
-            } else {
-                res.end(html);
-            }
-        });
+        module.exports(files, data, responder(cb, res));
     }
     next();
+}
+
+module.exports.express = function(opts) {
+    opts = opts || {};
+    opts.name = opts.name || "listRender";
+    var path = require("path");
+    return function(req, res, next) {
+        res[opts.name] = function(files, data, cb) {
+
+            var viewFolder = path.join(req.app.get("views"), "/");
+
+            for (var i = 0; i < files.length; i++) {
+                files[i] = path.join(viewFolder, files[i]);
+                if (!files[i].match(/\.ejs$/)) {
+                    files[i] = files[i] + ".ejs";
+                }
+            }
+
+            module.exports(files, data, responder(cb, res))
+        }
+        next();
+    }
 }

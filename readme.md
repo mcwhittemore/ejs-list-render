@@ -10,7 +10,7 @@ ELR expects all templates other than the last one in the list to have a `<%- __y
 
 ```
 var elr = require("ejs-list-render");
-render(["outerfile.ejs", "middlefile.ejs", "and.ejs", "so-on.ejs"], {data:"for all files"}, function(err, html){
+elr(["outerfile.ejs", "middlefile.ejs", "and.ejs", "so-on.ejs"], {data:"for all files"}, function(err, html){
 	if(err){
 		//you're most likely missing a required parameter
 	}
@@ -20,10 +20,27 @@ render(["outerfile.ejs", "middlefile.ejs", "and.ejs", "so-on.ejs"], {data:"for a
 });
 ```
 
-## Usage With Express & Connect
+## Usage With Connect
+
+```
+var app = require("connect")();
+var elr = require("ejs-list-render");
+app.use(elr.connect);
+
+//Then when responding
+
+res.render(["outter.ejs", "inner.ejs"], {"data":"for all files"});
+```
+
+## Usage With Express
 
 ```
 var app = require("express")();
 var elr = require("ejs-list-render");
-app.use(elr.connect);
+app.set('views', path.join(__dirname, 'views'));
+app.use(els.express({name:"listRender"}));
+
+app.get("/", function(req, res, next){
+	res.listRender(["outer", "inner"], {"data":"for all files"});
+});
 ```
