@@ -38,7 +38,7 @@ var responder = function(cb, res) {
             cb(err, html);
         } else if (err) {
             res.statusCode = 500;
-            res.end(err);
+            res.end(err.stack ? err.stack : err.toString());
         } else {
             res.end(html);
         }
