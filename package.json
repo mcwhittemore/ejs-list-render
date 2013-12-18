@@ -1,12 +1,12 @@
 {
   "name": "ejs-list-render",
+  "version": "0.1.1",
   "devDependencies": {
     "node-hooks": "0.0.15",
     "esprima.hks": "0.0.0",
     "beautify.hks": "0.0.3",
     "should": "~2.0.2"
   },
-  "version": "0.1.0",
   "description": "Render a list of nested ejs templates",
   "main": "index.js",
   "dependencies": {
