@@ -1,8 +1,6 @@
 var ejs = require("ejs");
 module.exports = function(files, data, cb) {
 
-    console.log(files);
-
     if (typeof files === "string") {
         files = [files];
     }
@@ -12,7 +10,6 @@ module.exports = function(files, data, cb) {
             cb(null, html);
         } else {
             data.__yield = html;
-            console.log(files[i], data);
             ejs.renderFile(files[i], {
                 locals: data
             }, function(err, html) {

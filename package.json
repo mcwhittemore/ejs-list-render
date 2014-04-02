@@ -1,6 +1,6 @@
 {
   "name": "ejs-list-render",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "devDependencies": {
     "node-hooks": "0.0.15",
     "esprima.hks": "0.0.0",
