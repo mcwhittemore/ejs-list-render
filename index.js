@@ -1,5 +1,8 @@
 var ejs = require("ejs");
 module.exports = function(files, data, cb) {
+
+    console.log(files);
+
     if (typeof files === "string") {
         files = [files];
     }
@@ -8,7 +11,8 @@ module.exports = function(files, data, cb) {
         if (i < 0) {
             cb(null, html);
         } else {
-            data.__yeild = html;
+            data.__yield = html;
+            console.log(files[i], data);
             ejs.renderFile(files[i], {
                 locals: data
             }, function(err, html) {
@@ -54,10 +58,22 @@ module.exports.connect = function(req, res, next) {
 
 module.exports.express = function(opts) {
     opts = opts || {};
-    opts.name = opts.name || "listRender";
+    var resAttr = opts.name || "listRender";
+
+    var baseData = opts.data || {};
+    var baseKeys = Object.keys(baseData);
+    var numKeys = baseKeys.length;
+
     var path = require("path");
     return function(req, res, next) {
-        res[opts.name] = function(files, data, cb) {
+        res[resAttr] = function(files, data, cb) {
+
+            for (var i = 0; i < numKeys; i++) {
+                var key = baseKeys[i];
+                data[key] = data[key] || baseData[key];
+            }
+
+            console.log(data);
 
             var viewFolder = path.join(req.app.get("views"), "/");
 
