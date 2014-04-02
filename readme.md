@@ -6,7 +6,7 @@ A templete-esq soltion for ejs rendering.
 
 `npm install ejs-list-render`
 
-ELR expects all templates other than the last one in the list to have a `<%- __yeild %>` callout.
+ELR expects all templates other than the last one in the list to have a `<%- __yield %>` callout.
 
 ```
 var elr = require("ejs-list-render");
