@@ -32,15 +32,20 @@ app.use(elr.connect);
 res.render(["outter.ejs", "inner.ejs"], {"data":"for all files"});
 ```
 
-## Usage With Express
+## Usage With Express: elr.express(opts)
 
 ```
 var app = require("express")();
 var elr = require("ejs-list-render");
 app.set('views', path.join(__dirname, 'views'));
-app.use(els.express({name:"listRender"}));
+app.use(elr.express({name:"listRender", data: {title:"My Site"}}));
 
 app.get("/", function(req, res, next){
 	res.listRender(["outer", "inner"], {"data":"for all files"});
 });
 ```
+
+### Express Options
+
+* name: optional. Sets the res attribute the list-render function is on. Default: listRender
+* data: optional. default data to be used for every request unless over written by the provided data object.
